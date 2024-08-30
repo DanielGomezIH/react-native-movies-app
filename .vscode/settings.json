@@ -1,5 +1,8 @@
 {
   "exportall.config.folderListener": [
-    "/src/presentation/screens"
+    "/src/presentation/screens",
+    "/src/core/use-cases",
+    "/src/core/entities",
+    "/src/presentation/hooks"
   ]
 }
