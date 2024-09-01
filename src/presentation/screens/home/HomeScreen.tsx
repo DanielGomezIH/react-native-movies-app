@@ -25,7 +25,7 @@ export const HomeScreen = () => {
         renderItem={({ item }) => <Text>{item.title}</Text>}
       />
 
-      <Text style={styles.title}>UPCOMING</Text>
+      <Text style={styles.title}>UP COMING</Text>
       <FlatList
         data={upcoming}
         renderItem={({ item }) => <Text>{item.title}</Text>}
