@@ -1,36 +1,24 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useMovies } from '../../hooks';
+import { PosterCarousel } from '../../components';
 
 export const HomeScreen = () => {
-  const { nowPlaying, popular, topRated, upcoming } = useMovies();
+  const { top, bottom } = useSafeAreaInsets();
+
+  const { isLoading, nowPlaying } = useMovies();
+
+  if (isLoading) {
+    return <Text>Loading</Text>;
+  }
 
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={styles.title}>NOW PLAYING</Text>
-
-      <FlatList
-        data={nowPlaying}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-      />
-
-      <Text style={styles.title}>POPULAR</Text>
-      <FlatList
-        data={popular}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-      />
-
-      <Text style={styles.title}>TOP RATED</Text>
-      <FlatList
-        data={topRated}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-      />
-
-      <Text style={styles.title}>UP COMING</Text>
-      <FlatList
-        data={upcoming}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-      />
-    </View>
+    <ScrollView>
+      <View style={{ marginTop: top + 10, paddingBottom: bottom + 10 }}>
+        <PosterCarousel movies={nowPlaying} />
+      </View>
+    </ScrollView>
   );
 };
 
